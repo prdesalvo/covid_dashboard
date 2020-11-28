@@ -88,7 +88,9 @@ fig1.update_layout(template='none', height=500, autosize=True,hovermode="x unifi
 
 
 #Layout
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+server = app.server
 
 app.layout = html.Div([
 
