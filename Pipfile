@@ -11,6 +11,7 @@ dash = "==1.17.0"
 plotly = "==4.13.0"
 dash-bootstrap-components = "*"
 requests = "*"
+gunicorn = "*"
 
 [dev-packages]
 
