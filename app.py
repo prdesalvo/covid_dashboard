@@ -237,8 +237,9 @@ app.layout = html.Div([
 	dbc.Col(html.H1(children='COVID-19 Dashboard'),width=12),
     #dbc.Col(html.H4(children=dt.datetime.strftime(months[-1],'%B %Y')),width=6),
 
-    dbc.CardDeck(
-    [
+    html.Div([
+    dbc.Row([
+        dbc.Col([
         dbc.Card(
             dbc.CardBody(
                 [
@@ -252,7 +253,9 @@ app.layout = html.Div([
                     ),
                 ]
             )
-        ),
+        )],width=4, lg=4),
+        
+        dbc.Col([
         dbc.Card(
             dbc.CardBody(
                 [
@@ -265,7 +268,8 @@ app.layout = html.Div([
                     ),
                 ]
             )
-        ),
+        )],width=4,lg=4),
+        dbc.Col([
         dbc.Card(
             dbc.CardBody(
                 [
@@ -278,40 +282,34 @@ app.layout = html.Div([
                     ),
                 ]
             )
-        ),
+        )],width=4,lg=4)
     ]
-),
+)]),
 
     #test
     html.Br(),
 
-        dbc.CardDeck(
+        html.Div(
             [
-            dbc.Card(
-                dbc.CardBody(
-                    dcc.Graph(
-                    id='example-graph',
-                    figure=fig1
-                            )
-                    )
-                ),
-            dbc.Card(
-                dbc.CardBody(
-                    dcc.Graph(
-                    id='example-graph-2',
-                    figure=fig2
-                            )
-                    )
-                ),
-            dbc.Card(
-                dbc.CardBody(
-                    dcc.Graph(
-                    id='example-graph-3',
-                    figure=fig3
-                            )
-                    )
-                )
+            dbc.Row([
+                    dbc.Col(
+                        dcc.Graph(
+                        id='example-graph',
+                        figure=fig1),lg=4
+                    ),
+                dbc.Col(
+                        dcc.Graph(
+                        id='example-graph-2',
+                        figure=fig2), lg=4
+                    ),
+                dbc.Col(
+                        dcc.Graph(
+                        id='example-graph-3',
+                        figure=fig3), lg=4
+                        )
+                    ])
             ]),
+
     dcc.Graph(
         id='example-graph-5',
         figure=fig4
@@ -322,7 +320,7 @@ app.layout = html.Div([
         ),
 
 
-    html.H1(children='State Data'),
+    dbc.Col(html.H1(children='State Data'),width=12),
 
         html.Div([
         dbc.Form([
