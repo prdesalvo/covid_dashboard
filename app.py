@@ -253,7 +253,7 @@ app.layout = html.Div([
                     ),
                 ]
             )
-        )],width=4, lg=4),
+        )],lg=4),
         
         dbc.Col([
         dbc.Card(
@@ -268,7 +268,7 @@ app.layout = html.Div([
                     ),
                 ]
             )
-        )],width=4,lg=4),
+        )],lg=4),
         dbc.Col([
         dbc.Card(
             dbc.CardBody(
@@ -282,9 +282,9 @@ app.layout = html.Div([
                     ),
                 ]
             )
-        )],width=4,lg=4)
+        )],lg=4)
     ]
-)]),
+)],className="example-container"),
 
     #test
     html.Br(),
