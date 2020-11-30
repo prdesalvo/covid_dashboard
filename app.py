@@ -284,7 +284,7 @@ app.layout = html.Div([
             )
         )],lg=4)
     ]
-)],className="example-container"),
+, align='center')],className="container-fluid"),
 
     #test
     html.Br(),
@@ -311,13 +311,14 @@ app.layout = html.Div([
             ]),
 
     dcc.Graph(
-        id='example-graph-5',
-        figure=fig4
-        ),
-    dcc.Graph(
         id='example-graph-4',
         figure=fig10
         ),
+    dcc.Graph(
+        id='example-graph-5',
+        figure=fig4
+        ),
+    
 
 
     dbc.Col(html.H1(children='State Data'),width=12),
