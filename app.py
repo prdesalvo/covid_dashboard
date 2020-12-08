@@ -228,13 +228,14 @@ available_indicators = sorted(us_states_daily_df_population['State'].unique().to
 stat_indicators = ['New Cases','Deaths','Hospitalized']
 
 #Layout
-app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
+application = app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 server = app.server
 
 app.layout = html.Div([
 
 	dbc.Col(html.H1(children='COVID-19 Dashboard'),width=12),
+    dbc.Col(html.H5(children=dt.datetime.strftime(dt.datetime.now(),'%B %-d, %Y')),width=12),
     #dbc.Col(html.H4(children=dt.datetime.strftime(months[-1],'%B %Y')),width=6),
 
     html.Div([
