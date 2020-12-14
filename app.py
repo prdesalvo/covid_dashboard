@@ -393,4 +393,4 @@ def aggregate_convos(state, indicator):
 
 
 if __name__ == '__main__':
-    application.run_server(debug=True)
+    application.run(debug=True, port=8080)

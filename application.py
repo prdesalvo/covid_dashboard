@@ -228,11 +228,11 @@ available_indicators = sorted(us_states_daily_df_population['State'].unique().to
 stat_indicators = ['New Cases','Deaths','Hospitalized']
 
 #Layout
-application = app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-server = application.server
+application = app.server
 
-application.layout = html.Div([
+app.layout = html.Div([
 
 	dbc.Col(html.H1(children='COVID-19 Dashboard'),width=12),
     dbc.Col(html.H5(children=dt.datetime.strftime(dt.datetime.now(),'%B %-d, %Y %H:%M:%S')),width=12),
@@ -353,7 +353,7 @@ application.layout = html.Div([
 
     ])	
 
-@application.callback(
+@app.callback(
     Output('indicator-graphic-1', 'figure'),
     Input('state', 'value'),
     Input('indicator', 'value'))
@@ -393,4 +393,4 @@ def aggregate_convos(state, indicator):
 
 
 if __name__ == '__main__':
-    application.run_server(debug=True)
+    application.run(debug=True, port=8080)
