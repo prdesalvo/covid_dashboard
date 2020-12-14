@@ -232,7 +232,8 @@ app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 application = app.server
 
-app.layout = html.Div([
+def serve_layout():
+    return html.Div([
 
 	dbc.Col(html.H1(children='COVID-19 Dashboard'),width=12),
     dbc.Col(html.H5(children=dt.datetime.strftime(dt.datetime.now(),'%B %-d, %Y %H:%M:%S')),width=12),
@@ -285,7 +286,7 @@ app.layout = html.Div([
             )
         )],lg=4)
     ]
-, align='center')],className="container-fluid"),
+    , align='center')],className="container-fluid"),
 
     #test
     html.Br(),
@@ -353,6 +354,9 @@ app.layout = html.Div([
 
     ])	
 
+
+app.layout = serve_layout
+
 @app.callback(
     Output('indicator-graphic-1', 'figure'),
     Input('state', 'value'),
@@ -389,8 +393,6 @@ def aggregate_convos(state, indicator):
     ))
 
     return fig6
-
-
 
 if __name__ == '__main__':
     application.run(debug=True, port=8080)
