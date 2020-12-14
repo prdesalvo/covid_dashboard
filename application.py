@@ -228,11 +228,11 @@ available_indicators = sorted(us_states_daily_df_population['State'].unique().to
 stat_indicators = ['New Cases','Deaths','Hospitalized']
 
 #Layout
-app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
+application = app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-application = app.server
+server = application.server
 
-app.layout = html.Div([
+application.layout = html.Div([
 
 	dbc.Col(html.H1(children='COVID-19 Dashboard'),width=12),
     dbc.Col(html.H5(children=dt.datetime.strftime(dt.datetime.now(),'%B %-d, %Y %H:%M:%S')),width=12),
@@ -353,7 +353,7 @@ app.layout = html.Div([
 
     ])	
 
-@app.callback(
+@application.callback(
     Output('indicator-graphic-1', 'figure'),
     Input('state', 'value'),
     Input('indicator', 'value'))
