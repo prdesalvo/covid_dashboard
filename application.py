@@ -24,6 +24,7 @@ else:
 
 
 state_populations = pd.DataFrame({'State': {0: 'California', 1: 'Texas', 2: 'Florida', 3: 'New York', 4: 'Illinois', 5: 'Pennsylvania', 6: 'Ohio', 7: 'Georgia', 8: 'North Carolina', 9: 'Michigan', 10: 'New Jersey', 11: 'Virginia', 12: 'Washington', 13: 'Arizona', 14: 'Massachusetts', 15: 'Tennessee', 16: 'Indiana', 17: 'Missouri', 18: 'Maryland', 19: 'Wisconsin', 20: 'Colorado', 21: 'Minnesota', 22: 'South Carolina', 23: 'Alabama', 24: 'Louisiana', 25: 'Kentucky', 26: 'Oregon', 27: 'Oklahoma', 28: 'Connecticut', 29: 'Utah', 30: 'Iowa', 31: 'Nevada', 32: 'Arkansas', 33: 'Mississippi', 34: 'Kansas', 35: 'New Mexico', 36: 'Nebraska', 37: 'West Virginia', 38: 'Idaho', 39: 'Hawaii', 40: 'New Hampshire', 41: 'Maine', 42: 'Montana', 43: 'Rhode Island', 44: 'Delaware', 45: 'South Dakota', 46: 'North Dakota', 47: 'Alaska', 48: 'DC', 49: 'Vermont', 50: 'Wyoming'}, 'July 2019 Estimate': {0: 39512223.0, 1: 28995881.0, 2: 21477737.0, 3: 19453561.0, 4: 12671821.0, 5: 12801989.0, 6: 11689100.0, 7: 10617423.0, 8: 10488084.0, 9: 9986857.0, 10: 8882190.0, 11: 8535519.0, 12: 7614893.0, 13: 7278717.0, 14: 6949503.0, 15: 6833174.0, 16: 6732219.0, 17: 6137428.0, 18: 6045680.0, 19: 5822434.0, 20: 5758736.0, 21: 5639632.0, 22: 5148714.0, 23: 4903185.0, 24: 4648794.0, 25: 4467673.0, 26: 4217737.0, 27: 3956971.0, 28: 3565287.0, 29: 3205958.0, 30: 3155070.0, 31: 3080156.0, 32: 3017825.0, 33: 2976149.0, 34: 2913314.0, 35: 2096829.0, 36: 1934408.0, 37: 1792147.0, 38: 1787065.0, 39: 1415872.0, 40: 1359711.0, 41: 1344212.0, 42: 1068778.0, 43: 1059361.0, 44: 973764.0, 45: 884659.0, 46: 762062.0, 47: 731545.0, 48: 705749.0, 49: 623989.0, 50: 578759.0}})
+state_codes = pd.DataFrame({'state_name': {0: 'Alabama', 1: 'Alaska', 2: 'American Samoa', 3: 'Arizona', 4: 'Arkansas', 5: 'California', 6: 'Colorado', 7: 'Connecticut', 8: 'Delaware', 9: 'District Of Columbia', 10: 'Florida', 11: 'Georgia', 12: 'Guam', 13: 'Hawaii', 14: 'Idaho', 15: 'Illinois', 16: 'Indiana', 17: 'Iowa', 18: 'Kansas', 19: 'Kentucky', 20: 'Louisiana', 21: 'Maine', 22: 'Maryland', 23: 'Massachusetts', 24: 'Michigan', 25: 'Minnesota', 26: 'Mississippi', 27: 'Missouri', 28: 'Montana', 29: 'Nebraska', 30: 'Nevada', 31: 'New Hampshire', 32: 'New Jersey', 33: 'New Mexico', 34: 'New York', 35: 'North Carolina', 36: 'North Dakota', 37: 'Northern Mariana Is', 38: 'Ohio', 39: 'Oklahoma', 40: 'Oregon', 41: 'Pennsylvania', 42: 'Puerto Rico', 43: 'Rhode Island', 44: 'South Carolina', 45: 'South Dakota', 46: 'Tennessee', 47: 'Texas', 48: 'Utah', 49: 'Vermont', 50: 'Virginia', 51: 'Virgin Islands', 52: 'Washington', 53: 'West Virginia', 54: 'Wisconsin', 55: 'Wyoming'}, 'abbreviation': {0: 'AL', 1: 'AK', 2: 'AS', 3: 'AZ', 4: 'AR', 5: 'CA', 6: 'CO', 7: 'CT', 8: 'DE', 9: 'DC', 10: 'FL', 11: 'GA', 12: 'GU', 13: 'HI', 14: 'ID', 15: 'IL', 16: 'IN', 17: 'IA', 18: 'KS', 19: 'KY', 20: 'LA', 21: 'ME', 22: 'MD', 23: 'MA', 24: 'MI', 25: 'MN', 26: 'MS', 27: 'MO', 28: 'MT', 29: 'NE', 30: 'NV', 31: 'NH', 32: 'NJ', 33: 'NM', 34: 'NY', 35: 'NC', 36: 'ND', 37: 'MP', 38: 'OH', 39: 'OK', 40: 'OR', 41: 'PA', 42: 'PR', 43: 'RI', 44: 'SC', 45: 'SD', 46: 'TN', 47: 'TX', 48: 'UT', 49: 'VT', 50: 'VA', 51: 'VI', 52: 'WA', 53: 'WV', 54: 'WI', 55: 'WY'}})
 
 available_indicators = sorted(state_populations['State'].unique().tolist())
 stat_indicators = ['New Cases','Deaths','Hospitalized']
@@ -157,7 +158,7 @@ def serve_layout():
 	dbc.Col(html.P(children='Data as of '+dt.datetime.strftime(dt.datetime.now(),'%B %-d, %Y %H:%M:%S')),width=12),
 	dbc.Col(html.P(children='Data from the COVID Tracking Project'),width=12),
 
-	html.Div(id='intermediate-value-1', style={'display': 'none'}),
+	#html.Div(id='intermediate-value-1', style={'display': 'none'}),
 
 	html.P(id='placeholder'),
 	html.P(id='placeholder2')
@@ -337,7 +338,7 @@ def national_data(placeholder):
 #State Data
 @app.callback(
 	Output('example-graph-5', 'figure'),
-	Output('intermediate-value-1', 'children'),
+	#Output('intermediate-value-1', 'children'),
 	Input('placeholder2', 'id'))
 
 def create_all_the_charts(placeholder):
@@ -374,9 +375,7 @@ def create_all_the_charts(placeholder):
 		return df_new_cases, df_new_cases_rolling
 		
 	us_state_daily_cases, us_state_daily_cases_rolling = new_daily_cases(state_list)
-	us_state_and_rolling = pd.merge(us_state_daily_cases, us_state_daily_cases_rolling, how='inner', left_index=True, right_index=True, suffixes = ['_new','_rolling'])
-	state_codes = pd.DataFrame({'state_name': {0: 'Alabama', 1: 'Alaska', 2: 'American Samoa', 3: 'Arizona', 4: 'Arkansas', 5: 'California', 6: 'Colorado', 7: 'Connecticut', 8: 'Delaware', 9: 'District Of Columbia', 10: 'Florida', 11: 'Georgia', 12: 'Guam', 13: 'Hawaii', 14: 'Idaho', 15: 'Illinois', 16: 'Indiana', 17: 'Iowa', 18: 'Kansas', 19: 'Kentucky', 20: 'Louisiana', 21: 'Maine', 22: 'Maryland', 23: 'Massachusetts', 24: 'Michigan', 25: 'Minnesota', 26: 'Mississippi', 27: 'Missouri', 28: 'Montana', 29: 'Nebraska', 30: 'Nevada', 31: 'New Hampshire', 32: 'New Jersey', 33: 'New Mexico', 34: 'New York', 35: 'North Carolina', 36: 'North Dakota', 37: 'Northern Mariana Is', 38: 'Ohio', 39: 'Oklahoma', 40: 'Oregon', 41: 'Pennsylvania', 42: 'Puerto Rico', 43: 'Rhode Island', 44: 'South Carolina', 45: 'South Dakota', 46: 'Tennessee', 47: 'Texas', 48: 'Utah', 49: 'Vermont', 50: 'Virginia', 51: 'Virgin Islands', 52: 'Washington', 53: 'West Virginia', 54: 'Wisconsin', 55: 'Wyoming'}, 'abbreviation': {0: 'AL', 1: 'AK', 2: 'AS', 3: 'AZ', 4: 'AR', 5: 'CA', 6: 'CO', 7: 'CT', 8: 'DE', 9: 'DC', 10: 'FL', 11: 'GA', 12: 'GU', 13: 'HI', 14: 'ID', 15: 'IL', 16: 'IN', 17: 'IA', 18: 'KS', 19: 'KY', 20: 'LA', 21: 'ME', 22: 'MD', 23: 'MA', 24: 'MI', 25: 'MN', 26: 'MS', 27: 'MO', 28: 'MT', 29: 'NE', 30: 'NV', 31: 'NH', 32: 'NJ', 33: 'NM', 34: 'NY', 35: 'NC', 36: 'ND', 37: 'MP', 38: 'OH', 39: 'OK', 40: 'OR', 41: 'PA', 42: 'PR', 43: 'RI', 44: 'SC', 45: 'SD', 46: 'TN', 47: 'TX', 48: 'UT', 49: 'VT', 50: 'VA', 51: 'VI', 52: 'WA', 53: 'WV', 54: 'WI', 55: 'WY'}})
-	state_populations = pd.DataFrame({'State': {0: 'California', 1: 'Texas', 2: 'Florida', 3: 'New York', 4: 'Illinois', 5: 'Pennsylvania', 6: 'Ohio', 7: 'Georgia', 8: 'North Carolina', 9: 'Michigan', 10: 'New Jersey', 11: 'Virginia', 12: 'Washington', 13: 'Arizona', 14: 'Massachusetts', 15: 'Tennessee', 16: 'Indiana', 17: 'Missouri', 18: 'Maryland', 19: 'Wisconsin', 20: 'Colorado', 21: 'Minnesota', 22: 'South Carolina', 23: 'Alabama', 24: 'Louisiana', 25: 'Kentucky', 26: 'Oregon', 27: 'Oklahoma', 28: 'Connecticut', 29: 'Utah', 30: 'Iowa', 31: 'Nevada', 32: 'Arkansas', 33: 'Mississippi', 34: 'Kansas', 35: 'New Mexico', 36: 'Nebraska', 37: 'West Virginia', 38: 'Idaho', 39: 'Hawaii', 40: 'New Hampshire', 41: 'Maine', 42: 'Montana', 43: 'Rhode Island', 44: 'Delaware', 45: 'South Dakota', 46: 'North Dakota', 47: 'Alaska', 48: 'DC', 49: 'Vermont', 50: 'Wyoming'}, 'July 2019 Estimate': {0: 39512223.0, 1: 28995881.0, 2: 21477737.0, 3: 19453561.0, 4: 12671821.0, 5: 12801989.0, 6: 11689100.0, 7: 10617423.0, 8: 10488084.0, 9: 9986857.0, 10: 8882190.0, 11: 8535519.0, 12: 7614893.0, 13: 7278717.0, 14: 6949503.0, 15: 6833174.0, 16: 6732219.0, 17: 6137428.0, 18: 6045680.0, 19: 5822434.0, 20: 5758736.0, 21: 5639632.0, 22: 5148714.0, 23: 4903185.0, 24: 4648794.0, 25: 4467673.0, 26: 4217737.0, 27: 3956971.0, 28: 3565287.0, 29: 3205958.0, 30: 3155070.0, 31: 3080156.0, 32: 3017825.0, 33: 2976149.0, 34: 2913314.0, 35: 2096829.0, 36: 1934408.0, 37: 1792147.0, 38: 1787065.0, 39: 1415872.0, 40: 1359711.0, 41: 1344212.0, 42: 1068778.0, 43: 1059361.0, 44: 973764.0, 45: 884659.0, 46: 762062.0, 47: 731545.0, 48: 705749.0, 49: 623989.0, 50: 578759.0}})
+	us_state_and_rolling = pd.merge(us_state_daily_cases, us_state_daily_cases_rolling, how='inner', left_index=True, right_index=True, suffixes = ['_new','_rolling'])	
 
 	us_state_and_rolling.fillna(0, inplace=True)
 	us_state_and_rolling[us_state_and_rolling < 0 ] = 0 #This removes negative numbers because I think there are some days with missing data
@@ -415,18 +414,18 @@ def create_all_the_charts(placeholder):
 			lakecolor='rgb(255, 255, 255)'),
 	)
 
-	return fig4, us_states_daily_df_population.to_json(date_format='iso', orient='split')
+	return fig4
 
 #Click Data
 @app.callback(
 	#Output('click-data', 'children'),
 	#dash.dependencies.Output('click-data', 'children'),
 	Output('indicator-graphic-2', 'figure'),
-	Input('example-graph-5', 'clickData'),
+	Input('example-graph-5', 'clickData'))
 	#[dash.dependencies.Input('example-graph-5', 'clickData')],
-	Input('intermediate-value-1', 'children'))
+	#Input('intermediate-value-1', 'children'))
 
-def display_click_data(clickData, jsonified_cleaned_data1):
+def display_click_data(clickData):
 	#clicked_json = json.loads(json.dumps(clickData))
 
 	def clicked_variable(x):
@@ -437,99 +436,139 @@ def display_click_data(clickData, jsonified_cleaned_data1):
 	
 	clicked_state = clicked_variable(clickData)
 
+
+	single_state_data_api = pd.read_json('https://api.covidtracking.com/v1/states/'+clicked_state+'/daily.json')
+
+	single_state_data_api['date'] = pd.to_datetime(single_state_data_api['date'],format='%Y%m%d')
+	single_state_data_api.set_index('date', drop=True, inplace=True)
+	single_state_data_api.sort_index(inplace=True)
+
+	single_state_data_api_new_per_day = single_state_data_api[['positive','hospitalizedCumulative','death']].diff(periods=1)
+	single_state_data_api_new_per_day.fillna(0)
+	single_state_data_api_new_per_day[single_state_data_api_new_per_day < 0 ] = 0
+
+	single_state_data_api_new_per_day_rolling = single_state_data_api_new_per_day.rolling(window=7).mean()
+	single_state_data_api_new_per_day_rolling.fillna(0)
+	single_state_data_api_new_per_day_rolling[single_state_data_api_new_per_day_rolling < 0 ] = 0
+
+	fig100 = go.Figure()
+	fig100.add_trace(go.Bar(x=single_state_data_api_new_per_day.index, 
+					  y=single_state_data_api_new_per_day['positive'], 
+					  marker_color='lightblue', 
+					  name= 'Positive Cases',
+					  hovertemplate = '%{y:,.0f}'
+					 ))
+	fig100.add_trace(go.Scatter(x=single_state_data_api_new_per_day_rolling.index, 
+						  y=single_state_data_api_new_per_day_rolling['positive'], 
+						  marker_color='#000080', 
+						  name = '7 Day Moving Avg.',
+						 hovertemplate ='%{y:,.0f}'))
+
+
+	fig100.update_layout(template='none', height=500, autosize=True,hovermode="x unified", title=clicked_state.upper()+' New Daily COVID Cases',legend=dict(
+		orientation="h",
+		yanchor="bottom",
+		y=1.02,
+		xanchor="right",
+		x=1
+		))
+#py.iplot(fig1, filename = 'us_new_daily_covid_cases')
+
 	# if clickData['points'][0]['location'] == None:
 	# 	clicked_state = 'MN'
 	# else: 
 	# 	clicked_state = clickData['points'][0]['location']
 	#return json.dumps(clickData)
 
-	us_states_daily_df_population = pd.read_json(jsonified_cleaned_data1, orient='split')
-	us_states_daily_df_population['date'] = pd.to_datetime(us_states_daily_df_population['date'])
+	# us_states_daily_df_population = pd.read_json(jsonified_cleaned_data1, orient='split')
+	# us_states_daily_df_population['date'] = pd.to_datetime(us_states_daily_df_population['date'])
 	
-	df_single_state = us_states_daily_df_population[us_states_daily_df_population['abbreviation'] == clicked_state]
+	# df_single_state = us_states_daily_df_population[us_states_daily_df_population['abbreviation'] == clicked_state]
 
-	state_chart_title = 'New Cases '+df_single_state['state_name'].iloc[0]
+	# state_chart_title = 'New Cases '+df_single_state['state_name'].iloc[0]
 
-	fig6 = go.Figure()
+	# fig6 = go.Figure()
 
 
-	fig6.add_trace(go.Bar(x=df_single_state['date'], 
-						  y=df_single_state['positive_new'], 
-						  marker_color='lightblue', 
-						  name= 'New Cases',
-						  hovertemplate ='%{y:,.0f}'))
+	# fig6.add_trace(go.Bar(x=df_single_state['date'], 
+	# 					  y=df_single_state['positive_new'], 
+	# 					  marker_color='lightblue', 
+	# 					  name= 'New Cases',
+	# 					  hovertemplate ='%{y:,.0f}'))
 
-	fig6.add_trace(go.Scatter(x=df_single_state['date'], 
-							  y=df_single_state['positive_rolling'], 
-							  marker_color='#000080', 
-							  name = '7 Day Moving Avg.',
-							  hovertemplate ='%{y:,.0f}'))
+	# fig6.add_trace(go.Scatter(x=df_single_state['date'], 
+	# 						  y=df_single_state['positive_rolling'], 
+	# 						  marker_color='#000080', 
+	# 						  name = '7 Day Moving Avg.',
+	# 						  hovertemplate ='%{y:,.0f}'))
 
-	fig6.update_layout(template='none', height=500, autosize=True, hovermode= 'x unified', title=state_chart_title,legend=dict(
-		orientation="h",
-		yanchor="bottom",
-		y=1.02,
-		xanchor="right",
-		x=1
-	))
+	# fig6.update_layout(template='none', height=500, autosize=True, hovermode= 'x unified', title=state_chart_title,legend=dict(
+	# 	orientation="h",
+	# 	yanchor="bottom",
+	# 	y=1.02,
+	# 	xanchor="right",
+	# 	x=1
+	# ))
 
-	return fig6
+	return fig100
 
 #original stuff in callback
 
 @app.callback(
 	Output('indicator-graphic-1', 'figure'),
-	Input('intermediate-value-1', 'children'),
+	#Input('intermediate-value-1', 'children'),
 	Input('state', 'value'),
 	Input('indicator', 'value'))
 
-def state_charts(jsonified_cleaned_data1, state, indicator):
+def state_charts(state, indicator):
 
-	us_states_daily_df_population = pd.read_json(jsonified_cleaned_data1, orient='split')
-	us_states_daily_df_population['date'] = pd.to_datetime(us_states_daily_df_population['date'])
-	
-	df_single_state = us_states_daily_df_population[us_states_daily_df_population['state_name'] == state] #.rename(columns={'positive':'New Cases','hospitalizedCumulative':'Hospitalized','death':'Deaths'})
-	#df_rolling_single_state = us_state_daily_cases_rolling[us_state_daily_cases_rolling['state'] == state_filter].rename(columns={'positive':'New Cases','hospitalizedCumulative':'Hospitalized','death':'Deaths'})
+	dropdown_state = state_codes[state_codes['state_name'] == state]['abbreviation'].iloc[0]
+
+	single_state_data_api = pd.read_json('https://api.covidtracking.com/v1/states/'+dropdown_state+'/daily.json')
+
+	single_state_data_api['date'] = pd.to_datetime(single_state_data_api['date'],format='%Y%m%d')
+	single_state_data_api.set_index('date', drop=True, inplace=True)
+	single_state_data_api.sort_index(inplace=True)
+
+	single_state_data_api_new_per_day = single_state_data_api[['positive','hospitalizedCumulative','death']].diff(periods=1)
+	single_state_data_api_new_per_day.fillna(0)
+	single_state_data_api_new_per_day[single_state_data_api_new_per_day < 0 ] = 0
+
+	single_state_data_api_new_per_day_rolling = single_state_data_api_new_per_day.rolling(window=7).mean()
+	single_state_data_api_new_per_day_rolling.fillna(0)
+	single_state_data_api_new_per_day_rolling[single_state_data_api_new_per_day_rolling < 0 ] = 0
 
 	def y_axis_cat1(x):
-		if indicator == 'New Cases':
-			return 'positive_new'
-		elif indicator == 'Deaths':
-			return 'death_new'
-		elif indicator == 'Hospitalized':
-			return 'hospitalizedCumulative_new'
+		if x == 'New Cases':
+			return 'positive'
+		elif x == 'Deaths':
+			return 'death'
+		elif x == 'Hospitalized':
+			return 'hospitalizedCumulative'
 
-	def y_axis_cat2(x):
-		if indicator == 'New Cases':
-			return 'positive_rolling'
-		elif indicator == 'Deaths':
-			return 'death_rolling'
-		elif indicator == 'Hospitalized':
-			return 'hospitalizedCumulative_rolling'
+	fig200 = go.Figure()
+	fig200.add_trace(go.Bar(x=single_state_data_api_new_per_day.index, 
+					  y=single_state_data_api_new_per_day[y_axis_cat1(indicator)], 
+					  marker_color='lightblue', 
+					  name= 'Positive Cases',
+					  hovertemplate = '%{y:,.0f}'
+					 ))
+	fig200.add_trace(go.Scatter(x=single_state_data_api_new_per_day_rolling.index, 
+						  y=single_state_data_api_new_per_day_rolling[y_axis_cat1(indicator)], 
+						  marker_color='#000080', 
+						  name = '7 Day Moving Avg.',
+						 hovertemplate ='%{y:,.0f}'))
 
-	fig7 = go.Figure()
-
-	fig7.add_trace(go.Bar(x=df_single_state['date'], 
-						  y=df_single_state[y_axis_cat1(indicator)], 
-						  marker_color='lightblue', 
-						  name= indicator+' '+state,
-						  hovertemplate ='%{y:,.0f}'))
-
-	fig7.add_trace(go.Scatter(x=df_single_state['date'], 
-							  y=df_single_state[y_axis_cat2(indicator)], 
-							  marker_color='#000080', 
-							  name = '7 Day Moving Avg.',
-							  hovertemplate ='%{y:,.0f}'))
-
-	fig7.update_layout(template='none', height=500, autosize=True, hovermode= 'x unified', title=indicator+' '+ state,legend=dict(
+	fig200.update_layout(template='none', height=500, autosize=True,hovermode="x unified", title=state+' New Daily COVID Cases',legend=dict(
 		orientation="h",
 		yanchor="bottom",
 		y=1.02,
 		xanchor="right",
 		x=1
-	))
+		))
 
-	return fig7
+	return fig200
+
 
 if __name__ == '__main__':
 	application.run(debug=True, port=8080)
